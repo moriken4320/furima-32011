@@ -10,7 +10,7 @@ class Item < ApplicationRecord
       validates :ship_from_location_id
       validates :delivery_time_id
     end
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
     validates :user
     validates :image
   end
