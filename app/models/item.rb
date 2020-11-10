@@ -8,7 +8,7 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
-  belongs_to :quality_statu
+  belongs_to :quality_status
   belongs_to :delivery_burden
   belongs_to :ship_from_location
   belongs_to :delivery_time
