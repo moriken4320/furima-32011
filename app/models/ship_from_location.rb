@@ -1,0 +1,2 @@
+class ShipFromLocation < ApplicationRecord
+end
