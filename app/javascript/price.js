@@ -12,7 +12,7 @@ const price = () => {
       tax = 0;
     }
     add_tax_price.textContent = tax.toLocaleString();
-    profit.textContent = price_value - tax;
+    profit.textContent = (price_value - tax).toLocaleString();
   });
 };
 
