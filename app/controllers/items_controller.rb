@@ -21,13 +21,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
     move_to_index(@item)
   end
-  
+
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
@@ -35,9 +34,9 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-  
 
   private
+
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :quality_status_id, :delivery_burden_id, :ship_from_location_id, :delivery_time_id, :price, :image).merge(user_id: current_user.id)
   end
@@ -47,8 +46,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index(item)
-    unless user_signed_in? && current_user.id == item.user.id
-      redirect_to root_path
-    end
+    redirect_to root_path unless user_signed_in? && current_user.id == item.user.id
   end
 end
