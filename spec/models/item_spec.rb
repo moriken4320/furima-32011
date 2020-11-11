@@ -5,14 +5,14 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item)
   end
 
-  describe "商品の出品" do
-    context "商品が出品できる場合" do
+  describe '商品の出品' do
+    context '商品が出品できる場合' do
       it 'name,desctiption,imageが存在していて、category_id,quality_status_id,delivery_burden_id,ship_from_location_id,delivery_time_idが0以外の数値で、priceが300~9999999の整数で、userが紐づいていれば保存できる' do
         expect(@item).to be_valid
       end
     end
 
-    context "商品が出品できない場合" do
+    context '商品が出品できない場合' do
       it 'nameが空だと保存できない' do
         @item.name = nil
         @item.valid?
