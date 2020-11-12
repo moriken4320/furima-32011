@@ -7,8 +7,12 @@ require("@rails/ujs").start()
 // require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("../price")
-require("../card")
+if(location.pathname.includes('new') || location.pathname.includes('edit')){
+  require("../price")
+}
+if(location.pathname.includes('purchases')){
+  require("../card")
+}
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
