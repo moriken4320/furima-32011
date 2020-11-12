@@ -8,5 +8,6 @@ FactoryBot.define do
     house_number {"あああああ"}
     building_name {"あああああ"}
     phone_number {11111111111}
+    token {Faker::Lorem.characters(number: 10)}
   end
 end
