@@ -10,20 +10,8 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@purchase_address).to be_valid
       end
-      it 'postal_codeが「3桁数値＋ハイフン＋4桁数値」であれば保存できる' do
-        @purchase_address.postal_code = '222-3333'
-        expect(@purchase_address).to be_valid
-      end
-      it 'prefecture_idが0以外であれば保存できる' do
-        @purchase_address.prefecture_id = 3
-        expect(@purchase_address).to be_valid
-      end
       it 'building_nameが空でも保存できる' do
         @purchase_address.building_name = ''
-        expect(@purchase_address).to be_valid
-      end
-      it 'phone_numberが11桁以内で自然数であれば保存できる' do
-        @purchase_address.phone_number = 33_333_333_333
         expect(@purchase_address).to be_valid
       end
     end
@@ -33,6 +21,11 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.postal_code = ''
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Postal code can't be blank")
+      end
+      it 'postal_codeにハイフンがないと保存できない' do
+        @purchase_address.postal_code = '2222222'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Postal code Input correctly')
       end
       it 'postal_codeが「3桁数値＋ハイフン＋4桁数値」以外だと保存できない' do
         @purchase_address.postal_code = '22-222'
@@ -78,6 +71,16 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.token = nil
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userが存在しないと保存できない' do
+        @purchase_address.user = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('User must exist')
+      end
+      it 'itemが存在しないと保存できない' do
+        @purchase_address.item = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Item must exist')
       end
     end
   end
