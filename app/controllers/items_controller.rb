@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:edit]
 
   def index
-    @items = Item.includes(:user).order('created_at desc')
+    @items = Item.includes(:user, :purchase).order('created_at desc')
   end
 
   def new
