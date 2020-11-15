@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 if(location.pathname.includes('new') || location.pathname.includes('edit')){
   require("../price")
+  require("../preview")
 }
 if(location.pathname.includes('purchases')){
   require("../card")
